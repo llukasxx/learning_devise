@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def active_for_authentication?
+    super && is_active
+  end
+
 end

@@ -12,6 +12,17 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def destroy
+    @user = User.find(current_user.id)
+    @user.is_active = false
+    if @user.save
+      sign_out @user
+      redirect_to root_path
+    else
+      render "edit"
+    end
+  end
+
 
   private
 
