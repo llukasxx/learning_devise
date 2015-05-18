@@ -2,7 +2,6 @@ class RegistrationsController < Devise::RegistrationsController
   
   def update
     @user = User.find(current_user.id)
-    debugger
     if @user.update_with_password(user_params)
       set_flash_message :notice, :updated
       sign_in @user, :bypass => true

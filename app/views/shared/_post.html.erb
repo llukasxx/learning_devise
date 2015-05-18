@@ -1,0 +1,14 @@
+<div class="row">
+  <% @posts.each do |post| %>
+  <div class="col-md-5">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><p><%= post.title %></p></div>
+      <div class="panel-body">
+        <p><%= post.content %></p>
+        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-warning" %>
+      </div>
+      <span>Composed by: <%= link_to post.user.username, user_posts_path(id: post.user.id)%></span>
+    </div>
+  </div>
+  <% end %>
+</div>

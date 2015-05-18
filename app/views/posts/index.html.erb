@@ -1,33 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Posts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="alert alert-info" role="alert">Hey there! Here you can read or create new posts! :)</div>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user.username %></td>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <% if cannot?(:destroy, post) %>
-          <td>You can't do this!</td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<p><%= link_to "New post", new_post_path, class: "btn btn-danger glyphicon glyphicon-plus"%></p>
 
-<br>
+<h1>Recent posts:</h1>
 
-<%= link_to 'New Post', new_post_path %>
+
+<%= render 'shared/post', locals: @posts %>
+

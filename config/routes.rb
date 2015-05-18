@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
+  get 'user_posts' => 'users#show_posts'
   resources :posts
-  get 'registrations/update'
-
   root 'home#index'
 
   devise_for :users, :controllers => { :registrations => "registrations" }
