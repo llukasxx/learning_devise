@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   get 'registrations/update'
 
   root 'home#index'
