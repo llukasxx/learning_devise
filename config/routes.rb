@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'user_posts' => 'users#show_posts'
+  get 'all_users' => 'users#show_users'
   resources :posts
   root 'home#index'
 

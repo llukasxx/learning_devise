@@ -5,4 +5,8 @@ class UsersController < ApplicationController
     @posts = @user.posts
   end
 
+  def show_users
+    @users = User.all
+  end
+
 end
