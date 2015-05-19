@@ -1,0 +1,18 @@
+<table class="table table-striped">
+  <thead>
+  	<th>Username:</th>
+  	<th>Email:</th>
+  	<th>Post count:</th>
+  	<th>Account type:</th>
+  	<th>Show posts:</th>
+  </thead>
+  <% @users.each do |user| %>
+	  <tbody>
+	  	<td><%= user.username %></td>
+	  	<td><%= user.email %></td>
+	  	<td><%= user.posts.count %></td>
+	  	<td>To be filled</td>
+	  	<td><%= link_to "Show posts", user_posts_path(id: user.id), class: "btn btn-primary btn-sm"%></td>
+	  </tbody>
+	<% end %>
+</table>
