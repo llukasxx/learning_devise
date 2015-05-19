@@ -1,3 +1,6 @@
-<h2>Posts written by <%= @user.username%>:</h2>
-
-<%= render 'shared/post', locals: @posts %>
+<% if !@posts.empty? %>	
+	<h2>Posts written by <%= @user.username%>:</h2>
+	<%= render 'shared/post', locals: @posts %>
+<% else %>
+	<h2>There are no any posts written by <%= @user.username %></h2>
+<% end %>
