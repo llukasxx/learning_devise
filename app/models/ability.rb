@@ -31,6 +31,7 @@ class Ability
 
     if user && user.persisted?
       can :destroy, Post, user_id: user.id
+      can :update,  Post, user_id: user.id
     end
   end
 end
