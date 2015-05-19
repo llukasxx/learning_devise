@@ -5,6 +5,7 @@
       <div class="panel-heading"><p><%= post.title %></p></div>
       <div class="panel-body">
         <p><%= post.content %></p>
+        <%= link_to "Show", post_path(post), class: "btn btn-success" %>
         <% if can? :update, post %>
           <%= link_to "Edit", edit_post_path(post), class: "btn btn-warning" %>
         <% end %>
