@@ -11,7 +11,7 @@
 	  	<td><%= user.username %></td>
 	  	<td><%= user.email %></td>
 	  	<td><%= user.posts.count %></td>
-	  	<td>To be filled</td>
+	  	<td><%= user.admin ? "Admin" : "Normal" %></td>
 	  	<td><%= link_to "Show posts", user_posts_path(id: user.id), class: "btn btn-primary btn-sm"%></td>
 	  </tbody>
 	<% end %>
