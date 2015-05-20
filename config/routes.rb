@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'user_posts' => 'users#show_posts'
   get 'all_users' => 'users#show_users'
   resources :posts
+  resources :collaborations
   root 'home#index'
 
   devise_for :users, :controllers => { :registrations => "registrations" }

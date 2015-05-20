@@ -1,0 +1,35 @@
+<h2>Post owner: <%= link_to @post.user.username %></h2>
+<% if @collaborations.empty? %>
+	<h3>This post has no collaborators</h3>
+<% else %>
+	<div class="panel panel-default">
+	  
+	  <div class="panel-heading">Collaborators</div>
+
+	  <table class="table">
+	    <thead>
+	    	<td>Username</td>
+	    	<td>Email</td>
+	    	<td>Action</td>
+	    </thead>
+	    <% @collaborations.each do |c| %>
+	    <tbody>
+	    	<td><%= c.user.username%></td>
+	    	<td><%= c.user.email%></td>
+	    	<td><%= link_to "Delete", collaboration_path(c), method: :delete, class: "btn btn-danger"%></td>
+	    </tbody>
+	    <% end %>
+	  </table>
+
+	</div>
+<% end %>
+
+<%= form_for(@collaboration) do |f| %>
+	<%= f.hidden_field :post_id, value: params[:id] %>
+
+	<%= f.label :user %>
+	<%= f.collection_select :user_id, @users, :id, :username %>
+	<br>
+
+	<%= f.submit "Add collab", class: "btn btn-info" %>
+<% end %>

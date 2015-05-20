@@ -3,4 +3,5 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @post, class: "btn btn-sm btn-primary" %> |
+<%= link_to 'Collabs', edit_collaboration_path(id: @post.id), class: "btn btn-sm btn-info" %> |
 <%= link_to 'Back', posts_path, class: "btn btn-sm btn-warning" %>

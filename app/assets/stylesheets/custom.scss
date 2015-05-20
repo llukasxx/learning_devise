@@ -1,5 +1,7 @@
 body { padding-top: 70px; }
 
+a:visited{color:black !important;}
+
 div {
   word-wrap: break-word
 }
@@ -19,4 +21,8 @@ div {
 .panel-heading p {
 	font-size: 25px;
 	font-weight: bold;
+}
+
+.goright {
+	float: right;
 }

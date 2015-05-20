@@ -13,6 +13,9 @@
             <% if can? :destroy, post %>
               <%= link_to "Delete", post_path(post), method: :delete, class: "btn btn-danger" %>
             <% end %>
+            <%= link_to "#", class: "btn btn-primary goright" do %>
+              Collabs <span class="badge"><%= "x"%></span>
+            <% end %>
           </div>
           <span>Composed by: <%= link_to post.user.username, user_posts_path(id: post.user.id)%></span>
         </div>
