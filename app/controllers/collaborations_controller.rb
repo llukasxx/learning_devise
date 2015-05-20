@@ -1,8 +1,9 @@
 class CollaborationsController < ApplicationController
+  before_action :authenticate_user!, except: [:edit]
 
   def edit
     @post = Post.find(params[:id])
-    @collaborations = Collaboration.all
+    @collaborations = @post.collaborations
     @collaboration = Collaboration.new
     used_cols = @collaborations.map { |c| c.user.id }
     @users = User.where.not(id: used_cols)
