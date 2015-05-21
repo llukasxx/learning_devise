@@ -13,14 +13,16 @@ class Ability
       can :read,    Post do |post|
         !post.restricted? || post.user_id == user.id
       end
-      can :destroy, Post,          user_id: user.id
-      can :update,  Post,          user_id: user.id
       can :create,  Post,          user_id: user.id
+      can :update,  Post do |post|
+        post.user_id == user.id || post.collaborations.map { |c| c.user_id }.include?(user.id)
+      end
+      can :destroy, Post,          user_id: user.id
       can :create,  Collaboration do |col|
-        col.post.user == user
+        col.post.user.id == user.id
       end
       can :destroy, Collaboration do |col|
-        col.post.user == user
+        col.post.user.id == user.id
       end
     end
 
