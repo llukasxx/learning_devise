@@ -17,7 +17,7 @@
 	    	<td><%= c.user.username%></td>
 	    	<td><%= c.user.email%></td>
 	    	<% if can? :destroy, @collaboration %>
-	    		<td><%= link_to "Delete", collaboration_path(c), method: :delete, class: "btn btn-danger"%></td>
+	    		<td><%= link_to "Delete", collaboration_path(c), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%></td>
 	    	<% else %>
 	    		<td>No permission</td>
 	    	<% end %>

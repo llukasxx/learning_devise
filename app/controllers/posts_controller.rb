@@ -16,11 +16,13 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    authorize! :new, Post
     @post = Post.new
   end
 
   # GET /posts/1/edit
   def edit
+    authorize! :edit, Post
   end
 
   # POST /posts
