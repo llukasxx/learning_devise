@@ -13,13 +13,20 @@ class Ability
       can :read,    Post do |post|
         !post.restricted? || post.user_id == user.id
       end
-      can :destroy, Post, user_id: user.id
-      can :update,  Post, user_id: user.id
-      can :create,  Post, user_id: user.id
+      can :destroy, Post,          user_id: user.id
+      can :update,  Post,          user_id: user.id
+      can :create,  Post,          user_id: user.id
+      can :create,  Collaboration do |col|
+        col.post.user == user
+      end
+      can :destroy, Collaboration do |col|
+        col.post.user == user
+      end
     end
 
     if user.admin? && user.persisted?
       can :manage, Post
+      can :manage, Collaboration
     end
   end
 end

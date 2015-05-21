@@ -4,13 +4,15 @@ class CollaborationsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     @collaborations = @post.collaborations
-    @collaboration = Collaboration.new
-    used_cols = @collaborations.map { |c| c.user.id }
-    @users = User.where.not(id: used_cols)
+    @collaboration = Collaboration.new(post_id: @post.id)
+    active_cols = @collaborations.map { |c| c.user.id }
+    active_cols << @post.user_id
+    @users = User.where.not(id: active_cols)
   end
 
   def create
     @collaboration = Collaboration.new(collaboration_params)
+    authorize! :create, @collaboration
     if @collaboration.save
       redirect_to edit_collaboration_path(id: @collaboration.post_id)
     end
@@ -18,6 +20,7 @@ class CollaborationsController < ApplicationController
 
   def destroy
     @collaboration = Collaboration.find(params[:id])
+    authorize! :destroy, @collaboration
     if @collaboration.destroy
       redirect_to edit_collaboration_path(id: @collaboration.post_id)
     end
