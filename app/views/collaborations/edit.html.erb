@@ -1,6 +1,6 @@
 <h2>Post owner: <%= link_to @post.user.username %></h2>
 <% if @collaborations.empty? %>
-	<h3>This post has no collaborators</h3>
+	<h3>This post doesn't have collaborators</h3>
 <% else %>
 	<div class="panel panel-default">
 	  
@@ -28,17 +28,21 @@
 	</div>
 <% end %>
 
-<% if can? :create, @collaboration %>
+<% if !@users.empty? %>
 
-	<%= form_for(@collaboration) do |f| %>
+	<% if can? :create, @collaboration %>
 
-		<%= f.hidden_field :post_id, value: params[:id] %>
+		<%= form_for(@collaboration) do |f| %>
 
-		<%= f.label :user %>
-		<%= f.collection_select :user_id, @users, :id, :username %>
-		<br>
+			<%= f.hidden_field :post_id, value: params[:id] %>
 
-		<%= f.submit "Add collab", class: "btn btn-info" %>
+			<%= f.label :user %>
+			<%= f.collection_select :user_id, @users, :id, :username %>
+			<br>
+
+			<%= f.submit "Add collab", class: "btn btn-info" %>
+		<% end %>
+
 	<% end %>
 
 <% end %>
